@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Analysis Application</title>
+    <style>
+        /* CSS styles for the UI elements */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group select, .form-group input[type="number"], .form-group input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="file"] {
+            cursor: pointer;
+        }
+        .toggle-label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/analyze_video" method="POST" enctype="multipart/form-data">
+    <div class="container">
+        <h1>Video Analysis Application</h1>
+        <div class="form-group">
+            <label for="video">Select Video:</label>
+            <input type="file" id="video" accept="video/*">
+        </div>
+        <div class="form-group">
+            <label for="scenario">Select Scenario:</label>
+            <select id="scenario">
+                <option value="goal">Goal moments</option>
+                <option value="happy">Happy moments</option>
+                <option value="loss">Loss moments</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="duration">Segment Duration (seconds):</label>
+            <input type="number" id="duration" min="30" max="60" value="30">
+        </div>
+        <div class="form-group">
+            <label class="toggle-label">Enable Emotion Analysis:</label>
+            <input type="checkbox" id="emotion">
+        </div>
+        <button type="submit">Analyze Video</button>
+        <div class="output" id="output">
+            <!-- Output will be displayed here -->
+        </div>
+    </div>
+    </form>
+
+    <!-- JavaScript code to handle video analysis -->
+    <script>
+        function analyzeVideo() {
+            // Retrieve user inputs
+            var selectedVideo = document.getElementById('video').files[0];
+            var selectedScenario = document.getElementById('scenario').value;
+            var segmentDuration = document.getElementById('duration').value;
+            var emotionAnalysisEnabled = document.getElementById('emotion').checked;
+
+            // Perform video analysis here (code implementation depends on your backend)
+
+            // Display output (for demonstration purpose)
+            var outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+                <p>Video: ${selectedVideo.name}</p>
+                <p>Scenario: ${selectedScenario}</p>
+                <p>Segment Duration: ${segmentDuration} seconds</p>
+                <p>Emotion Analysis: ${emotionAnalysisEnabled ? 'Enabled' : 'Disabled'}</p>
+                <p>Output Segments:</p>
+                <!-- Display extracted video segments here -->
+            `;
+        }
+    </script>
+</body>
+</html>
